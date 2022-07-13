@@ -35,4 +35,20 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.patch("/edit/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const editedGame = await GameModel.findOneAndUpdate(
+      { _id: id },
+      { ...req.body },
+      { new: true }
+    );
+
+    return res.status(200).json(editedGame);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;
