@@ -24,4 +24,15 @@ router.get("/all-games", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const game = await GameModel.findOne({ _id: id });
+    return res.status(200).json(game);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;
