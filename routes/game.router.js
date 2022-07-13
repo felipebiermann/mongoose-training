@@ -51,4 +51,16 @@ router.patch("/edit/:id", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedGame = await GameModel.deleteOne({ _id: id });
+
+    return res.status(200).json(deletedGame);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;
