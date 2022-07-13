@@ -13,4 +13,15 @@ router.post("/create-game", async (req, res) => {
   }
 });
 
+router.get("/all-games", async (req, res) => {
+  try {
+    const allGame = await GameModel.find();
+
+    return res.status(200).json(allGame);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;
