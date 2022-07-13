@@ -8,6 +8,9 @@ const app = express();
 
 app.use(express.json());
 
+const gameRouter = require("./routes/game.router");
+app.use("/game", gameRouter);
+
 app.listen(Number(process.env.PORT), () => {
   console.log(`Server up and running at Port ${process.env.PORT}`);
 });
