@@ -27,7 +27,7 @@ router.get("/all-games", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const game = await GameModel.findOne({ _id: id });
+    const game = await GameModel.findOne({ _id: id }).populate("reviews");
     return res.status(200).json(game);
   } catch (err) {
     console.error(err);
